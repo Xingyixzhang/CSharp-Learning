@@ -33,3 +33,55 @@ namespace BasicLambda
         }
     }
 }
+
+// Demo: Use lambda functions to implement EventHandlers
+//       Just like how you would anonymous delegates or named functions.
+
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Threading.Tasks;
+using System.Linq;
+
+namespace LambdaDelegates
+{
+    public delegate void myEventHandler(string value);
+
+    class MyClass
+    {
+        private string theVal;
+        public event myEventHandler valueChanged;
+
+        public string Val
+        {
+            set
+            {
+                this.theVal = value;
+                // When the value changes, fire the event:
+                this.valueChanged(theVal);
+            }
+        }
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            MyClass obj = new MyClass();
+
+            obj.valueChanged += (x) =>
+            {
+                Console.WriteLine("The value has changed to: {0}", x);
+            };
+
+            string str;
+            do
+            {
+                str = Console.ReadLine();
+                if (!str.Equals("exit")) { obj.Val = str; }
+            } while (!str.Equals("exit"));
+
+            Console.WriteLine("\nPress Enter to continue...");
+        }
+    }
+}
