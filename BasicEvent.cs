@@ -30,9 +30,13 @@ namespace Event
         {
             EventPublisher obj = new EventPublisher();
             // obj.valueChanged += obj_valueChanged;
+            obj.valueChanged += changeListener1;
+            obj.valueChanged += changeListener2;
+
+            // Use an anonymous delegate as the event handler.
             obj.valueChanged += delegate (string val)
             {
-                Console.WriteLine("The value changed to {0}", val);
+                Console.WriteLine("This came from the anonymous handler! I got {0}", val);
             };
 
             string str;
@@ -50,9 +54,13 @@ namespace Event
             Console.ReadKey();
         }
 
-        static void obj_valueChanged(string value)
+        static void changeListener1(string value)
         {
             Console.WriteLine("The value changed to {0}", value);
+        }
+        static void changeListener2(string value)
+        {
+            Console.WriteLine("I also listen to the event, and got {0}", value);
         }
     }
 }
