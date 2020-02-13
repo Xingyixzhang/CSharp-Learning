@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace ArraySorting
 {
@@ -8,8 +8,37 @@ namespace ArraySorting
         {
             int[] arr = { 3, 81, 23, -1, 7, 50, 6, 9 };
 
-            MergeSort(arr);
+           // BubbleSort(arr);
+           // SelectionSort(arr);
+           // MergeSort(arr);
             printArray(arr);
+        }
+
+        static void BubbleSort(int[] arr)
+        {
+            for (int i = 0; i < arr.Length - 1; i++)
+            {
+                for (int j = i+1; j < arr.Length; j++)
+                {
+                    if (arr[i] > arr[j]) { int temp = arr[i];   arr[i] = arr[j];    arr[j] = temp; }
+                }
+            }
+        }
+
+        static void SelectionSort(int[] arr)
+        {
+            int temp;
+            for (int i = 0; i < arr.Length-1; i++)
+            {
+                int smallest = i;
+                for (int j = i+1; j < arr.Length; j++)
+                {
+                    if (arr[smallest] > arr[j]) { smallest = j; }
+                }
+                temp = arr[i];
+                arr[i] = arr[smallest];
+                arr[smallest] = temp;
+            }
         }
 
         static void MergeSort(int[] arr)
