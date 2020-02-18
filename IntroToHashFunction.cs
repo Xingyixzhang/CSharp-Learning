@@ -67,3 +67,5 @@ namespace Hash
         }
     }
 }
+
+// hash function intro demo: https://github.com/Xingyixzhang/Leetcode-Practice/blob/master/1stUniqueCharInString
