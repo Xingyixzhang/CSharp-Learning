@@ -1,0 +1,21 @@
+public class Solution {
+    public bool WordPattern(string pattern, string str) {
+        var pairs = new Dictionary<char, string>();
+        string[] words = str.Split(" ");
+        if (pattern.Length != words.Length)  return false;
+        
+        for (int i = 0; i < pattern.Length; i++){
+            char c = pattern[i];
+            string s = words[i];
+            
+            if(pairs.ContainsKey(c)){
+                if(pairs[c] != s)  return false;
+            }
+            else{
+                if(pairs.ContainsValue(s))  return false;
+                pairs.Add(c,s);
+            }
+        }
+        return true;
+    }
+}
