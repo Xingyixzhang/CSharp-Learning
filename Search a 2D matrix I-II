@@ -1,0 +1,40 @@
+I --
+/*
+ * Given a pattern and a string str, find if str follows the same pattern.
+ * Here follow means a full match, such that there is a bijection between a letter in pattern and a non-empty word in str.
+*/
+
+public class Solution {
+    public bool SearchMatrix(int[][] matrix, int target) {
+        if (matrix.Length == 0 || matrix[0].Length == 0)  return false;
+        for (int i = 0; i < matrix.Length; i++){
+            int n = matrix[i].Length;
+            if (target > matrix[i][n-1])    continue;
+            else if (Array.Exists(matrix[i], ele => ele == target))   return true;
+        }
+        return false;
+    }
+}
+
+II --
+/*
+ * Write an efficient algorithm that searches for a value in an m x n matrix. This matrix has the following properties:
+ * Integers in each row are sorted in ascending from left to right.
+ * Integers in each column are sorted in ascending from top to bottom.
+*/
+
+public class Solution {
+    public bool SearchMatrix(int[,] matrix, int target) {
+        int rows = matrix.GetLength(0);
+        int cols = matrix.GetLength(1);
+        if (rows == 0 || cols == 0) return false;
+        int row = 0, col = cols - 1;
+        
+        while (row < rows && col >= 0){
+            if (matrix[row, col] == target) return true;
+            else if (matrix[row, col] < target) row ++;
+            else    col --;
+        }
+        return false;
+    }
+}
