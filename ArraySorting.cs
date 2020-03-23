@@ -40,7 +40,13 @@ namespace ArraySorting
                 arr[smallest] = temp;
             }
         }
-
+        /*
+         * Merge Sort is a Divide and Conquer algorithm. It divides input array in 2 halves, calls itself for the 2 halves
+         * and then merges the 2 sorted halves.
+         * 2 Functions are involved in this algorithm: 
+         *      1. merge() -- merging 2 halves;
+         *      2. mergesort() -- recursively divide the array till size becomes 1.
+         */
         static void MergeSort(int[] arr)
         {
             int[] tmp = new int[arr.Length];
