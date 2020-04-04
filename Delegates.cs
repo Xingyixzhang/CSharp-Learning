@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-using System.Linq;
+using System.Linq;  // Language Integrated Query
 
 /*
     Delegate is based on a MulticaseDelegate base class.
@@ -14,6 +14,31 @@ using System.Linq;
     1. Can refernce >= 1 function
     2. Tracks delegate references using an invocation list
     3. Delegates in the list are invoked sequentially
+    
+    ** Delegate and Handler Method Parameters:
+    
+    public delegate void WorkPerformedHandler(int hours, WorkType workType);
+    public void Manager_WorkPerformed(int workHours, WorkType wType){ // Handler Method
+        ... ...
+    }
+    
+    ** Exposing and Raising Events:
+    
+    public delegate void WorkPerformedHandler(int hours, WorkType workType);
+    public class Workers{
+        public event WorkPerformedHandler WorkPerformed;    // Event Definition
+        public virtual void DoWork(int hours, WorkType workType){
+            // Do work here and notify customers that work has been performed.
+            OnWorkPerformed(hours, workType);   // "On" is commonly used in .NET framework.
+        }
+        // "protected virtual" instead of "private": Allow method override for later.
+        protected virtual void OnWorkPerformed(int hours, WorkType workType){
+            WorkPerformedHandler del = WorkPerformed as WorkPerformedHandler;
+            if (del != null){
+                del(hours, workType);       // Raise Event
+            }
+        }
+    }
 */
 
 namespace Delegates
