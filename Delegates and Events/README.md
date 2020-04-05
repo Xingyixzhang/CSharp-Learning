@@ -12,7 +12,12 @@ public void Manager_WorkPerformed(int workHours, WorkType wType){ // Handler Met
     ... ...
 }
 ```
-    
+
+### Define an Event:
+<public + keyword: event + delegate + event name;>
+
+``` public event WorkPerformedHandler WorkPerformed;```
+
 ### Multicast Delegate:
 1. Can refernce >= 1 function
 2. Tracks delegate references using an invocation list
@@ -34,11 +39,6 @@ static void WorkPerformed2 (int hours, WorkType wType){
     Console.WriteLine("WorkPerformed2 called.");
 }
 ```
-
-### Define an Event:
-<public + keyword: event + delegate + event name;>
-
-``` public event WorkPerformedHandler WorkPerformed;```
 
 ### Exposing and Raising Events:
 ```cs
@@ -79,3 +79,24 @@ public class Workers{
             WorkCompleted(this, EventArgs.Empty);
         }
     }
+```
+
+### Create an EventArgs class
+Use the EventArgs to send the data from the event raiser over the pipeline. When custom data needs to be passes, the EventArgs class can be extended.
+
+```cs
+public class WorkPerformedEventArgs: System.EventArgs
+{
+	public int Hours { get; set; }
+	public WorkType WorkType { get; set; }
+}
+
+// To use the custom EventArgs class, the delegate must reference the class in its signature:
+public delegate void WorkPerformedHandler(object sender, WorkPerformedEventArgs e);
+
+/* 
+	Since .NET includes a generic EventHandler<T> class, it can be used instead of a custom delegate:
+	The above code may be deleted when we use the generic feature of .NET EventHandler:
+*/
+public event EventHandler<WorkPerformedEventArgs> WorkPerformed; // Compiler will generate the delegate 
+```
