@@ -4,7 +4,8 @@
     
 ### A delegate is a specialized class functioning as a pipeline between event and event handler.
     Event ======================= Delegate (Pipeline) ========================> Event Handler
-    
+***
+## 1. Creating Delegates, Events, and EventHandlers
 ### Delegate and Handler Method Parameters:
 ```cs
 public delegate void WorkPerformedHandler(int hours, WorkType workType);
@@ -89,14 +90,39 @@ public class WorkPerformedEventArgs: System.EventArgs
 {
 	public int Hours { get; set; }
 	public WorkType WorkType { get; set; }
+	
+	public WorkPerformedEventArgs(int hours, WorkType workType){
+		Hours = hours;
+		WorkType = workType;
+	}
 }
 
 // To use the custom EventArgs class, the delegate must reference the class in its signature:
 public delegate void WorkPerformedHandler(object sender, WorkPerformedEventArgs e);
 
 /* 
-	Since .NET includes a generic EventHandler<T> class, it can be used instead of a custom delegate:
+	Since .NET includes a generic EventHandler<T> class, it can be used instead of a custom delegate.
 	The above code may be deleted when we use the generic feature of .NET EventHandler:
+	(Choose when you only need the event without needing the delegate stand on its own.)
 */
 public event EventHandler<WorkPerformedEventArgs> WorkPerformed; // Compiler will generate the delegate 
+
+// To Raise the event:
+protected virtual void OnWorkPerformed(int hours, WorkType workType){
+        // When not using the generic feature:
+        WorkPerformedHandler del = WorkPerformed as WorkPerformedHandler;
+	// When using the generic feature:
+	WorkPerformedHandler del = WorkPerformed as EventHandler<WorkPerformedEventArgs>;
+	
+        if (del != null){
+            del(this, new WorkPerformedEventArgs(hours, workType));       // Raise Event
+        }
+}
 ```
+***
+## 2. Handling Events
+### Instantiating delegates and Handling events
+
+### Delegate Inference
+
+### Using Anonymous Methods
