@@ -122,6 +122,7 @@ protected virtual void OnWorkPerformed(int hours, WorkType workType){
 ***
 ## 2. Handling Events
 ### Instantiating delegates and Handling events
+To listen to an event, we must construct a delegate and add it to the invocation list.
 ```cs
 var worker = new Worker();
 
@@ -140,7 +141,7 @@ static void worker_WorkCompleted(object sender, EventArgs e){
 }
 ```
 ### Delegate Inference
-Replace the 2nd above code with:
+The C# Compiler provides "delegate inference" functionality.
 ```cs
 var worker = new Worker();
 
@@ -151,4 +152,16 @@ worker.WorkCompleted += worker_WorkCompleted;
 // delegate inference also works for dettaching event handlers:
 worker.WorkCompleted -= worker_WorkCompleted;
 ```
-### Using Anonymous Methods
+### Using Anonymous Methods (nameless method)
+1. Anonymous methods allow us to attach an event handler **directly to an event at the source**.
+2. Anonymous methods are defined using the **delegate** keyword.
+3. Anonymous method is kind of **like Lamda** and it's embedded inline.
+```cs
+var worker = new Worker();
+
+// Anonymous methods cannot be reused, only good for this only instance.
+worker.WorkPerformed += delegate(oject sender, WorkPerformedEventArgs e)
+	{
+		Console.WriteLine(e.Hours.ToString());
+	};  // End of Anonymous method.
+```
