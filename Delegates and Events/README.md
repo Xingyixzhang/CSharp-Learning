@@ -122,7 +122,33 @@ protected virtual void OnWorkPerformed(int hours, WorkType workType){
 ***
 ## 2. Handling Events
 ### Instantiating delegates and Handling events
+```cs
+var worker = new Worker();
 
+// the += operator: Attach an event to an event handler:
+worker.WorkPerformed += new EventHandler<WorkPerformedEventArgs>(worker_WorkPerformed);
+worker.WorkCompleted += new EventHandler(worker_WorkCompleted);
+
+worker.DoWork(8, WorkType.GenerateReports);
+```
+```cs
+static void worker_WorkPerformed(object sender, WorkPerformedEventArgs e){
+	Console.WriteLine("Hours worked: " + e.Hours + " " + e.WorkType);
+}
+static void worker_WorkCompleted(object sender, EventArgs e){
+	Console.WriteLine("Work is done");
+}
+```
 ### Delegate Inference
+Replace the 2nd above code with:
+```cs
+var worker = new Worker();
 
+// the compiler will "infer" the delegate behind the scenes:
+worker.WorkPerformed += worker_WorkPerformed;
+worker.WorkCompleted += worker_WorkCompleted;
+
+// delegate inference also works for dettaching event handlers:
+worker.WorkCompleted -= worker_WorkCompleted;
+```
 ### Using Anonymous Methods
