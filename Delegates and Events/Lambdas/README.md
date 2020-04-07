@@ -1,4 +1,4 @@
-# Lambdas, Action<T> and Func<T, TResult>
+# Lambdas, Action\<T> and Func<T, TResult>
 ## Lambdas and Delegates
 1. Compare an Anonymous Method and a Lambda Expression:
 ```cs
@@ -24,7 +24,7 @@ SubmitButton.Click += (s, e) => MessageBox.Show("Button Clicked");
 delegate int AddDelegate(int a, int b);
 static void Main(string[] args){
     AddDelegate ad = (a, b) => a + b;   // Compiler take care of the return part.
-    int result = ad(1,1); //result = 2.
+    int result = ad(1,1);   //result = 2.
 }
 
 // Case 2: Handling Empty Parameters:
@@ -39,6 +39,48 @@ static void Main(string[] args){
     bool status = ld();
 }
 ```
+See it in Code:
+```cs
+public class ProcessData{
+    // pass in a delegate parameter, allowing the user to pass in the rules for how to process x and y.
+    public void Process(int x, int y, BizRulesDelegate del){    // Avoid Hardcoding BizRules.
+        var result = del(x, y);
+        Console.WriteLine(result);
+    }
+}
+```
+```cs
+public delegate int BizRulesDelegate(int x, int y);
+class Program{
+    static void Main(string[] args){
+        BizRulesDelegate addDel = (x, y) => x + y;
+        BizRulesDelegate multiplyDel = (x, y) => x * y;
+        
+        var data = new ProcessData();
+        data.Process(2, 3, addDel); // Process is going to perform addition, it doesn't know till runtime.
+        data.Process(2, 3, multiplyDel);
+    }
+}
+```
+***
+### Built-In Delegates in .NET:
+1. The .NET framework provides several different delegates that provide flexible options. Most Common:
+2. Action\<T\>: Accepts a **single** parameter of type T and returns **no value**. (ONE WAY PIPELINE)
+3. Func\<T, TResult\>: Accepts a **single** parameter of type T and return a **value of type TResult**.
+***
 ## Using Action<T>
-
+1. Action\<T\> saves you the time of writing: delegate void, \<name of delegate\>.
+```cs
+public static void Main(string[] args){
+    Action<string> messageTarget;
+    // Dynamically assign an action (ShowWindowMessage / Console.WriteLine (that can take the string as a parameter):
+    if (args.Length > 1)    messageTarget = ShowWindowsMessage;
+    else    messageTarget = Console.WriteLine;
+    messageTarget("Invoking Action!");
+}
+    
+private static void ShowWindowsMessage(string message){
+    MessageBox.Show(message);
+}
+```
 ## Using Func<T, TResult>
