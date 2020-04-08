@@ -69,7 +69,7 @@ class Program{
 3. Func\<T, TResult\>: Accepts a **single** parameter of type T and return a **value of type TResult**.
 ***
 ## Using Action<T>
-1. Action\<T\> saves you the time of writing: delegate void, \<name of delegate\>.
+Action\<T\> saves you the time of writing: delegate void, \<name of delegate\>.
 ```cs
 public static void Main(string[] args){
     Action<string> messageTarget;
@@ -84,3 +84,15 @@ private static void ShowWindowsMessage(string message){
 }
 ```
 ## Using Func<T, TResult>
+1. Func<T, TResult> supports a single parameter (T) and returns a value (TResult):
+```cs
+public static void Main(string[] args){
+    Func<string, bool> logFunc;
+    if (args[0] == "EventLog") logFunc = LogToEventLog;
+    else    logFunc = LogToFile;
+    bool status = logFunc("Log Message");
+}
+
+private static bool LogToEventLog(string message)   { /* log */ }
+private static bool LogToFile(string message)       { /* log */ }
+```
