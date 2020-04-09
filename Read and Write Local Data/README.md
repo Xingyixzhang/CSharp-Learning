@@ -7,18 +7,22 @@ namespace ReadWriteLocalData
 {
     class Program{
         static void Main(string[] args){
+```
+- File class contains atomic read methods:
+```cs
             string filePath = "C:\\inputSubdirectory\\inputSchool.txt"; // One may use '\\' or use '\' with '@' before the string.
             //        Or Use: @"C:\inputSubdirectory\inputSchool.txt";
             
             // ReadAllText(...)  -- Read entire content into memory (a string):
-            string inputSchool = File.ReadAllText(filePath);  // File class contains atomic read methods
+            string inputSchool = File.ReadAllText(filePath);
             // ReadAllLines(...) -- Read contents and store each line at a new index in a string array:
             string[] lines = File.ReadAllLines(filePath);
             // ReadAllBytes(...) -- Read contents as binary data and store data in a byte array:
             byte[] rawFile = File.ReadAllBytes(filePath);
-        }
-    }
-}
+```
+- File class contains atomic write methods:
+```cs
+
 ```
 2. Manipulating Files, Directories, File & Directory Paths
 3. .Net Framework provides **classes** to interact with **files, directories, and paths**:
