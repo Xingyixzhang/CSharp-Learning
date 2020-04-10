@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29806.167
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSSA Web App", "MSSA Web App.csproj", "{8201894E-5771-40B1-8387-301093FC8186}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8201894E-5771-40B1-8387-301093FC8186}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8201894E-5771-40B1-8387-301093FC8186}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8201894E-5771-40B1-8387-301093FC8186}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8201894E-5771-40B1-8387-301093FC8186}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1FB2373C-6067-4404-A04D-B431DCD20624}
+	EndGlobalSection
+EndGlobal
