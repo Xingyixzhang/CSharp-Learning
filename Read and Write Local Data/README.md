@@ -47,4 +47,43 @@ namespace ReadWriteLocalData
 3. .Net Framework provides **classes** to interact with **files, directories, and paths**:
 ``` File; FileInfo; Directory; DirectoryInfo; Path ```
 ## Serializing and Deserializing Data
+- Serialization: Object to Stream of Bytes
+- Stream of Bytes to (File/ DB/ Memory) to Stream of Bytes
+- Deserialization: Stream of bytes to Object
+1. **Binary** (**Fast** and **Lightweight**)
+```cs
+        // Serialize:
+            BinaryFormatter formatter = new BinaryFormatter();
+            formatter.Serialize(AliceFile, Alice);
+        // Deserialize:
+            BinaryFormatter formatter1 = new BinaryFormatter();
+            Student Alice1 = formatter1.Deserialize(AliceFile1) as Student;
+```
+- Preserve the fidelity and state of an  object between diff instances of your app.
+- Commonly used when persisting and transporting objects between apps running on **same** platform.
+2. **XML** 
+```cs
+        // Serialize:
+            SoapFormatter formatter2 = new SoapFormatter();
+            formatter2.Serialize(BobFile, Bob);
+        // Deserialize:
+            SoapFormatter formatter3 = new SoapFormatter();
+            Student Bob1 = formatter3.Deserialize(BobFile1) as Student;
+```
+- Can be processed by any app regardless of platform.
+- Does **NOT** preserve type fidelity, only allows you serialize **public members** that your type exposes.
+- **Less Efficient and more Processor intensive** during the serializing, deserializing, and transporting process.
+- Commonly used to serialize data that can be transported via the **SOAP** (simple object access protocol) **to and from web** services.
+3. **JSON** (Lightweight, Data-interchange format)
+```cs
+        // Serialize:
+            DataContractJsonSerializer formatter4 = new DataContractJsonSerializer(typeof(Student));
+            formatter4.WriteObject(DanFile, Dan);
+        // Deserialize:
+            DataContractJsonSerializer formatter5 = new DataContractJsonSerializer(typeof(Student));
+            Student Dan1 = formatter5.ReadObject(DanFile1) as Student;
+```
+- JSON is a simple text format that is readable and easy to parse by machine, irrespective of platform.
+- Commonly used to transport data between Asynchronous JavaScript and XML (AJAX). Unlike XML, JSON is not limited to just communicating within the same domain.
+4. 
 ## Performing I/O by Using Streams
