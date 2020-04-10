@@ -50,7 +50,7 @@ namespace ReadWriteLocalData
 - Serialization: Object to Stream of Bytes
 - Stream of Bytes to (File/ DB/ Memory) to Stream of Bytes
 - Deserialization: Stream of bytes to Object
-1. **Binary** (**Fast** and **Lightweight**)
+**1. Binary** (**Fast** and **Lightweight**)
 ```cs
         // Serialize:
             BinaryFormatter formatter = new BinaryFormatter();
@@ -61,7 +61,7 @@ namespace ReadWriteLocalData
 ```
 - Preserve the fidelity and state of an  object between diff instances of your app.
 - Commonly used when persisting and transporting objects between apps running on **same** platform.
-2. **XML** 
+**2. XML** 
 ```cs
         // Serialize:
             SoapFormatter formatter2 = new SoapFormatter();
@@ -74,7 +74,7 @@ namespace ReadWriteLocalData
 - Does **NOT** preserve type fidelity, only allows you serialize **public members** that your type exposes.
 - **Less Efficient and more Processor intensive** during the serializing, deserializing, and transporting process.
 - Commonly used to serialize data that can be transported via the **SOAP** (simple object access protocol) **to and from web** services.
-3. **JSON** (Lightweight, Data-interchange format)
+**3. JSON** (Lightweight, Data-interchange format)
 ```cs
         // Serialize:
             DataContractJsonSerializer formatter4 = new DataContractJsonSerializer(typeof(Student));
@@ -85,5 +85,7 @@ namespace ReadWriteLocalData
 ```
 - JSON is a simple text format that is readable and easy to parse by machine, irrespective of platform.
 - Commonly used to transport data between Asynchronous JavaScript and XML (AJAX). Unlike XML, JSON is not limited to just communicating within the same domain.
-4. 
+**4.** Create your own Serialable Type.
+[Serializable] + ": ISerializable" + Interface Method "GetObjectData" + Default constructor + Define public members you want to serialize.
 ## Performing I/O by Using Streams
+1. A **stream** is a **sequence of bytes**.
