@@ -16,8 +16,11 @@ public sealed class Mediator    // Cannot be overwritten.
   // Instance Functionality:
     public event EventHandler<JobChangedEventArgs> JobChanged;
     public void OnJobChanged(object sender, Job job){
-  
-  }
+        var jobChangedDelegate = JobChanged as EventHandler<JobChangedEventArgs>;
+        if (jobChangedDelegate != null){
+            jobChangedDelegate(sender, new jobChangedEventArgs {Job = job });
+        }
+    }
 }
 ```
 2. Write custom event and delegate, and allow components in a WPF app to communicate with each other.
