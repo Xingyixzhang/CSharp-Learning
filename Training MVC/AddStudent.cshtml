@@ -1,0 +1,26 @@
+﻿@model MSSA_Web_App.Models.Student
+
+@{
+    ViewData["Title"] = "AddStudent";
+}
+
+<h2>Add Student</h2>
+<form asp-action="SaveStudent">
+    @*@Html.EditorForModel()*@
+    @Html.LabelFor(m => m.FirstName)
+    @Html.EditorFor(m => m.FirstName)
+    <br />
+    @Html.LabelFor(m => m.LastName)
+    @Html.EditorFor(m => m.LastName)
+    <br />
+    @Html.LabelFor(m => m.Major)
+    @Html.EditorFor(m => m.Major)
+    <br />
+    @Html.LabelFor(m => m.GPA)
+    @Html.EditorFor(m => m.GPA)
+    <br />
+    <br />
+    <br />
+    @Html.ValidationSummary()
+    <input type="submit" value="SAVE" />
+</form>
