@@ -14,8 +14,8 @@ public sealed class Mediator    // Cannot be overwritten.
     }
     
   // Instance Functionality:
-  public event EventHandler<JobChangedEventArgs> JobChanged;
-  public void OnJobChanged(object sender, Job job){
+    public event EventHandler<JobChangedEventArgs> JobChanged;
+    public void OnJobChanged(object sender, Job job){
   
   }
 }
