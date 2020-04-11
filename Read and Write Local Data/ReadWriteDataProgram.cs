@@ -119,10 +119,18 @@ namespace ReadWriteLocalData
             /*
              * Why Binary Data:
              * Fast + Takes Less space on disk + Not Human Readable.
+             * **Inline comments apply to the StreamReader/Writer as well.
              */
-            FileStream file = new FileStream(filePath); // Underlying Stream to file on the file system.
+            FileStream file = new FileStream(filePath);   // Underlying Stream to file on the file system.
             BinaryReader reader = new BinaryReader(file); // reader object exposes read operations on the underlying FileStream object.
             BinaryWriter writer = new BinaryWriter(file); // writer object exposes write operations on the underlying FileStream object.
+        
+            /*
+             * Why Text Data:
+             * Human Readable + Easier to Process + Take up more disk space.
+             */
+            StreamReader reader = new StreamReader(file);
+            StreamWriter writer = new StreamWriter(file);
         }
     }
 }
