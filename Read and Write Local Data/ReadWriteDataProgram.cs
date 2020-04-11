@@ -121,8 +121,8 @@ namespace ReadWriteLocalData
              * Fast + Takes Less space on disk + Not Human Readable.
              */
             FileStream file = new FileStream(filePath); // Underlying Stream to file on the file system.
-            
-            
+            BinaryReader reader = new BinaryReader(file); // reader object exposes read operations on the underlying FileStream object.
+            BinaryWriter writer = new BinaryWriter(file); // writer object exposes write operations on the underlying FileStream object.
         }
     }
 }
