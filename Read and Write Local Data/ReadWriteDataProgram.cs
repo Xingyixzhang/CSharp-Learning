@@ -114,6 +114,15 @@ namespace ReadWriteLocalData
 
             Directory.Delete("inputs", true);
 
+            // Read and Write Data by using Streams:
+            
+            /*
+             * Why Binary Data:
+             * Fast + Takes Less space on disk + Not Human Readable.
+             */
+            FileStream file = new FileStream(filePath); // Underlying Stream to file on the file system.
+            
+            
         }
     }
 }
