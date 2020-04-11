@@ -94,3 +94,14 @@ namespace ReadWriteLocalData
 ## Performing I/O by Using Streams
 1. A **stream** is a **sequence of bytes**, enables you to read/write data in small, manageable files.
 2. .NET Framework provides the **Stream base class** in the **System.IO** namespace.
+3. The **System.IO** namespace contains some stream classes, ex:
+- **Abstract** Stream base class: Internally, a Stream object maintains a pointer referring to the current location in the data source.
+- **FileStream** class: uses a **disk file** as the data source.
+- **MemoryStream** class: uses a **block of memory** as the data source.
+4. Typical Stream **Operations**: Reading; Writing; Querying (stream position)
+5. Types of Streams in .NET Framework:
+- [**Raw** Sequence of bytes]: Classes that enable **access to data sources**: 
+**FileStream**, **MemoryStream**, **NetworkStream**. 
+(Exposes a stream to a <File/ Memory/ Network> location).
+- [**Textual** data and primitive types]: Classes that enable **reading and writing** to and from data source streams: 
+**StreamReader**(Texual), **StreamWriter**(Texual), **BinaryReader**(binary), **BinaryWriter**(binary).
