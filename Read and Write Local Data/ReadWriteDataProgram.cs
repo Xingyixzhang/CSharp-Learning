@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
@@ -96,41 +96,48 @@ namespace ReadWriteLocalData
 
             //Console.WriteLine();
 
-            try
+            //try
+            //{
+            //    File.ReadAllLines(@"inputs\inputSchools.txt");
+            //}
+            //catch (FileNotFoundException e)
+            //{
+            //    Directory.CreateDirectory("inputs");
+            //    File.Create(e.FileName);
+            //}
+
+            //// Write:
+            //File.Copy(@"inputs\inputSchools.txt", @"inputs\inputSchools_copy.txt", true);   //true: destination file can be overwritten.
+            //File.Delete(@"inputs\inputSchools_copy.txt");
+
+            //FileInfo myFile1 = new FileInfo(@"inputs\inputSchools.txt");
+
+            //Directory.Delete("inputs", true);
+
+            // Streams:
+            string[] vals = { "Hello World", "My Name is Xingyi", "Coding is fun" };
+            File.WriteAllLines("input2.txt", vals);
+
+            StreamWriter outFile = new StreamWriter("input3.txt");
+            outFile.WriteLine("Hello World");
+            outFile.WriteLine("My Name is Xingyi");
+            outFile.WriteLine("Coding is fun");
+            outFile.Flush(); // ensure to write info from buffer into the file.
+            outFile.Close(); // automatically flush, and close our connection with the file.
+
+            // Read and Display all contents of file input.txt:
+            Console.WriteLine("\nDisplay contents of input3.txt:");
+            Console.WriteLine("=================================");
+            StreamReader inFile = new StreamReader("input3.txt");
+            string s1 = inFile.ReadLine();
+            while (s1 != null)
             {
-                File.ReadAllLines(@"inputs\inputSchools.txt");
+                Console.WriteLine(s1);
+                s1 = inFile.ReadLine();
             }
-            catch (FileNotFoundException e)
-            {
-                Directory.CreateDirectory("inputs");
-                File.Create(e.FileName);
-            }
+            inFile.Close();
 
-            // Write:
-            File.Copy(@"inputs\inputSchools.txt", @"inputs\inputSchools_copy.txt", true);   //true: destination file can be overwritten.
-            File.Delete(@"inputs\inputSchools_copy.txt");
-
-            FileInfo myFile1 = new FileInfo(@"inputs\inputSchools.txt");
-
-            Directory.Delete("inputs", true);
-
-            // Read and Write Data by using Streams:
-            
-            /*
-             * Why Binary Data:
-             * Fast + Takes Less space on disk + Not Human Readable.
-             * **Inline comments apply to the StreamReader/Writer as well.
-             */
-            FileStream file = new FileStream(filePath);   // Underlying Stream to file on the file system.
-            BinaryReader reader = new BinaryReader(file); // reader object exposes read operations on the underlying FileStream object.
-            BinaryWriter writer = new BinaryWriter(file); // writer object exposes write operations on the underlying FileStream object.
-        
-            /*
-             * Why Text Data:
-             * Human Readable + Easier to Process + Take up more disk space.
-             */
-            StreamReader reader = new StreamReader(file);
-            StreamWriter writer = new StreamWriter(file);
+            Console.ReadLine();
         }
     }
 }
