@@ -15,7 +15,7 @@ namespace ReadWriteLocalData
             
             // ReadAllText(...)  -- Read entire content into memory (a string):
             string inputSchool = File.ReadAllText(filePath);
-            // ReadAllLines(...) -- Read contents and store each line at a new index in a string array:
+            // ReadAllLines(...) -- Read all lines at once and store each line at a new index in a string array:
             string[] lines = File.ReadAllLines(filePath);
             // ReadAllBytes(...) -- Read contents as binary data and store data in a byte array:
             byte[] rawFile = File.ReadAllBytes(filePath);
