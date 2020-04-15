@@ -30,8 +30,81 @@
 ### Read and Modify Data using EF
 - **System.Data.Entity.DbContext** class:
 1. **Read** Data: **DbSet(TEntity)** class implements the **IEnumerable** interface.
+```cs
+            FourthCoffeeEntities myDBContext = new FourthCoffeeEntities();
+            foreach(Employee item in myDBContext.Employees)
+            {
+                Console.WriteLine(item.FirstName);
+                Console.WriteLine(item.LastName);
+                Console.WriteLine(item.JobTitle);
+                Console.WriteLine("====================");
+                
+            }
+
+            foreach (var item in myDBContext.JobTitles)
+            {
+                Console.WriteLine(item.Job);
+                Console.WriteLine(item.JobTitleId);
+                Console.WriteLine("====================");
+            }
+```
 2. **Modify** Data: **Explicitly** apply changes. **Note: DBContext.SaveChanges();**
+```cs
+            var employeeToChange = myDBContext.Employees.First(emp => emp.LastName == "Adams");
+            if (employeeToChange != null)
+            {
+                employeeToChange.FirstName = "Xingyi";
+                employeeToChange.LastName = "Zhang";
+                myDBContext.SaveChanges();
+            }
+```
 ## 2. Query Data by using LINQ (Language-Integrated Query)
 ### Query Data
+- LINQ is an **alternative** to using the EF for querying data, it supports **Complile-Time Syntax-Checking and Type-Checking**.
+- Use LINQ to:
+1. Query a **range of data sources**, inc. .NET Framework collections, SQL Server Databases, ADO.NET Data Sets, XML docs
+2. Query **ANY data source that implements the IEnumerable interface**, syntax does not change regardless of type of the data sources.
+3. Select Data; Filter Data by Row / Column.
+```cs
+        IQueryable<Employee> myself = from emp in myDBContext.Employees
+                                      where emp.FirstName=="Alex"
+                                      select emp;
+        Console.WriteLine("all employees with first name alex:");
+        foreach(var emp in myself)
+            Console.WriteLine(emp.FirstName + " " + emp.LastName);
 
+
+        IQueryable<TwoColumns> selectSomeColumns = from emp in myDBContext.Employees
+                        select new TwoColumns() { DOB = emp.DateOfBirth, FirstName = emp.FirstName };
+        foreach(var item in selectSomeColumns)
+            Console.WriteLine(item.DOB + " " + item.FirstName);
+```
+- Query Data using **Anonymous** Types to:
+1. Filter data by Column;
+2. Group Data;
+3. Aggregate Data;
+4. Navigating Data.
+```cs
+            var selectSomeColumns2 = from emp in myDBContext.Employees
+                                     select new { DOB3 = emp.DateOfBirth,  emp.FirstName };
+            /////////////////////////////////////////////////////////
+            foreach (var item in selectSomeColumns2)
+                Console.WriteLine(item.DOB3 + " " + item.FirstName);
+
+
+            int numberOfEmployees = (from emp in myDBContext.Employees
+                                         select emp).Count();
+```
 ### Query Execution
+- **Deferred** Query Execution (Default behavior for most queries)
+1. Do **NOT run till user try to use** returned data.
+2. Whenever it is executed, it will return the **Latest Information**.
+- **Immediate** Query Execution (Default for queries that return a Singleton Value)
+\** When defining a LINQ query that returns a **Singleton value** (ave, count, max...) \**
+- **Forced** Query Execution (Overrides deferred query execution)
+\** .ToArray()/ .ToDictionary()/ .ToList() \**
+```cs
+            IList<Employee> emp = (from e in FCEntities.Employees
+                                   orderby e.LastName
+                                   select e).ToList();
+```
