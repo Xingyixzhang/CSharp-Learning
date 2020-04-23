@@ -71,11 +71,25 @@ class Program{
 ```cs
 // var myLambda = (x) => x + x;
 Func<string> returnsHello = () => "Hello World!";
+Func<int, int> square = x => x * x;
+Func<int, int, int> sum = (x, y) => x + y;
+
+Console.WriteLine( squre(20) );
+Console.WriteLine( returnsHello() );
 
 Action displayHello = () => { Console.WriteLine("Hello"); };
 Action<string> sayHello = (name) => { Console.WriteLine("Hello {0}", name); };
 
+List<Student> myClass = new List<Student>();
+myClass.Add(new Student() { FullName = "Alice", Major = "Physics", GPA = 3.2 } );
+myClass.Add(new Student() { FullName = "Bob", Major = "Chemistry", GPA = 3.6 } );
+myClass.Add(new Student() { FullName = "Xingyi", Major = "Math", GPA = 4.0 } );
 
+myClass.Sort( (st1, st2) => st1.FullName.CompareTo(st2.FullName) );
+// myClass.Sort( (st1, st2) => st1.Major.CompareTo(st2.Major) );
+foreach (var st in myClass){
+    Console.WriteLine(st);
+}
 ```
 ## Using Action<T>
 Action\<T\> saves you the time of writing: delegate void, \<name of delegate\>.
