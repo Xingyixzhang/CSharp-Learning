@@ -68,6 +68,15 @@ class Program{
 2. Action\<T\>: Accepts a **single** parameter of type T and returns **no value**. (ONE WAY PIPELINE)
 3. Func\<T, TResult\>: Accepts a **single** parameter of type T and return a **value of type TResult**.
 ***
+```cs
+// var myLambda = (x) => x + x;
+Func<string> returnsHello = () => "Hello World!";
+
+Action displayHello = () => { Console.WriteLine("Hello"); };
+Action<string> sayHello = (name) => { Console.WriteLine("Hello {0}", name); };
+
+
+```
 ## Using Action<T>
 Action\<T\> saves you the time of writing: delegate void, \<name of delegate\>.
 ```cs
