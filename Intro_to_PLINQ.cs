@@ -1,4 +1,12 @@
-﻿using System;
+/*
+ * LINQ allows users to perform querires over all types of data.
+ * Parallel Language-integrated query (PLINQ) can be used on objects to potentially turn a sequential query into a parallel query.
+ * 
+ * Extension methods for using PLINQ are defined in the System.Linq.ParallelEnumerable class. 
+ * Parallel versions of LINQ operators (WHERE, SELECT, SELECTMANY, GROUPBY, JOIN, ORDERBY, SKIP, TAKE) can be used.
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Linq;  // Enumerable.Range...
 using System.Text;
