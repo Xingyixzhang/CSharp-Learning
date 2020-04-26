@@ -12,3 +12,9 @@ When writing applications, users often cross the boundaries and use unmanaged re
 - If the GC finds a "living" item on the heap, it **marks** the item.
 - After checking the whole heap, the **Compact** operation starts. 
 - The GC then moves all living heap objects close together and frees the memory for all other objects.
+***
+3. All threads are **frozen** while doing a garbage collect operation.
+- The GC starts cleaning up **only when** there's not enough room on the heap to construct a new obj.
+- Or when Windows signals that it is low on memory.
+***
+4. The Garbage Collector removes item from the heap that are not no longer necessary and ensures that no obj can stay alive and occupy memory if it's not in use.
