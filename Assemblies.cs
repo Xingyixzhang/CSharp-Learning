@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Reflection;
+using System.Reflection;    // Access the assemblies.
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
