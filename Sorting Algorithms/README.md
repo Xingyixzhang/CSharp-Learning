@@ -54,12 +54,16 @@ void BubbleSort(int[] arr){
 }
 ```
 ***
-4. **Merge** Sort
+4. **Merge** Sort (Divide and Merge)  ==================== O(n log(n)) Time and O(n) Space. ==============
+
+[![Video Explaination for Merge Sort](http://img.youtube.com/vi/KF2j-9iSf4Q/0.jpg)](https://www.youtube.com/watch?v=KF2j-9iSf4Q)
 ```cs
 
 ```
 ***
-5. **Quick** Sort
+5. **Quick** Sort (Pivot point)  ==================== O(n log(n)) - O(n^2) Time and O(log(n)) ============
+
+[![Video Explaination for Merge Sort](http://img.youtube.com/vi/SLauY6PpjW4/0.jpg)](https://www.youtube.com/watch?v=SLauY6PpjW4)
 ```cs
 
 ```
